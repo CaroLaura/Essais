@@ -20,23 +20,28 @@
     const scriptURL = "https://script.google.com/macros/s/AKfycby2GwIqcK3wMJyWvAixc5ORzYUt11NNfMjixcTr4pDXLPSYPU_aIA99wnSYCs5sh22h/exec"; // URL page Apps Script
 
     document.getElementById("formulaire").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
+  e.preventDefault();
 
-      fetch(scriptURL, {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.text())
-      .then(txt => {
-        document.getElementById("message").textContent = "Données envoyées ✅";
-        this.reset();
-      })
-      .catch(err => {
-        document.getElementById("message").textContent = "Erreur ❌";
-        console.error(err);
-      });
-    });
+  // Nettoyage des champs
+  const inputs = this.querySelectorAll("input");
+  inputs.forEach(input => input.value = input.value.trim());
+
+  const formData = new FormData(this);
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(txt => {
+    document.getElementById("message").textContent = "Données envoyées ✅";
+    this.reset();
+  })
+  .catch(err => {
+    document.getElementById("message").textContent = "Erreur ❌";
+    console.error(err);
+  });
+});
   </script>
 </body>
 </html>
