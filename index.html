@@ -6,6 +6,7 @@
 </head>
 <body>
   <h1>Formulaire</h1>
+
   <form id="formulaire">
     <input name="nom" placeholder="Nom" required>
     <input name="prenom" placeholder="Prénom" required>
@@ -16,7 +17,7 @@
   <p id="message"></p>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzlW9bFCjCPEZmsWg56tMrMIS36RYzdzYuOYkP1MKzStUcoubfpVjYuEW70mt70XWlq/exec";
+    const scriptURL = "https://script.google.com/macros/s/TON_URL/exec"; // Remplace TON_URL
 
     document.getElementById("formulaire").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -24,7 +25,7 @@
 
       fetch(scriptURL, {
         method: "POST",
-        body: formData, // plus de JSON ici
+        body: formData
       })
       .then(res => res.text())
       .then(txt => {
