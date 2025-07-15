@@ -5,11 +5,26 @@
   <title>Formulaire vers Google Sheet</title>
 </head>
 <body>
-  <h1>Formulaire</h1>
+  <h1>Nouvelle inscription</h1>
+
   <form id="formulaire">
-    <input name="nom" placeholder="Nom" required>
-    <input name="prenom" placeholder="Prénom" required>
-    <input name="email" type="email" placeholder="Email" required>
+    <input name="texte" placeholder="Texte de l'inscription" required>
+    <input name="date_creation" type="date" placeholder="Date de création">
+    <input name="date_vu" type="date" placeholder="Date d'observation" required>
+
+    <select name="type_inscription" required>
+      <option value="">Type</option>
+      <option value="Collage">Collage</option>
+      <option value="Peinture">Peinture</option>
+      <option value="Autre">Autre</option>
+    </select>
+
+    <input name="motif_inscription" placeholder="Cause défendue" required>
+    <input name="entite_creatrice" placeholder="Auteur">
+    <input name="lieu" placeholder="Adresse : n° rue, code postal" required>
+    <input name="arrondissement" type="number" placeholder="Numéro d'arrondissement" required>
+    <input name="observateur_mail" type="email" placeholder="Email" required>
+
     <button type="submit">Envoyer</button>
   </form>
 
