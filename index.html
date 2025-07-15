@@ -16,19 +16,15 @@
   <p id="message"></p>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzlW9bFCjCPEZmsWg56tMrMIS36RYzdzYuOYkP1MKzStUcoubfpVjYuEW70mt70XWlq/exec"; // contient l'URL perso
+    const scriptURL = "https://script.google.com/macros/s/AKfycby2GwIqcK3wMJyWvAixc5ORzYUt11NNfMjixcTr4pDXLPSYPU_aIA99wnSYCs5sh22h/exec";
 
     document.getElementById("formulaire").addEventListener("submit", function(e) {
       e.preventDefault();
       const formData = new FormData(this);
-      const data = Object.fromEntries(formData.entries());
 
       fetch(scriptURL, {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
+        body: formData, // plus de JSON ici
       })
       .then(res => res.text())
       .then(txt => {
