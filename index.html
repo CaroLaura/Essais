@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire vers Google Sheet</title>
+</head>
+<body>
+  <h1>Formulaire</h1>
+  <form id="formulaire">
+    <input name="nom" placeholder="Nom" required>
+    <input name="prenom" placeholder="Prénom" required>
+    <input name="email" type="email" placeholder="Email" required>
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz8bjrRUE48JEXUXyp-S0CyahaAogIMqYnWy5OSJNccI0v9twPiIIlEMr7K8bE9Y9i_/exec"; // contient l'URL perso
+
+    document.getElementById("formulaire").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.text())
+      .then(txt => {
+        document.getElementById("message").textContent = "Données envoyées ✅";
+        this.reset();
+      })
+      .catch(err => {
+        document.getElementById("message").textContent = "Erreur ❌";
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>
